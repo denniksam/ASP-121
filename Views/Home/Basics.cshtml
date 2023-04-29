@@ -1,0 +1,53 @@
+﻿@model ASP121.Models.Home.BasicsModel
+@{
+    ViewData["Title"] = "Вступ";
+}
+
+<div>
+    <h1 class="display-4">Огляд MVC</h1>
+</div>
+<p>
+    MVC - Model-View-Controller<br/>
+    <b>Model</b> - об'єкт, який вживається для передачі даних між контроллером
+    та представленням. На відміну від класичного паттерну MVC, в ASP 
+    модель не активна, більше нагадує структуру для даних.
+    Активну роботу з даними в ASP прийнято покладати на контекст даних
+    (Entity Framework)<br />
+    <b>View</b> - представлення, <code>.cshtml</code> файли, які розширюють
+    можливості стандартного HTML включенням до нього CS (C#) інструкцій з
+    особливим синтаксисом <strong>Razor</strong><br />
+    <b>Controller</b> - центральна частина, яка обробляє запит, готує
+    модель, визначає представлення та передає модель до представлення.
+</p>
+<p>
+    Приклад: впровадимо у представлення дані щодо часу звернення до нього.
+</p>
+<ol>
+    <li>Описуємо модель: у папці Models створюємо папку з іменем контроллера
+        (Home), у ній клас з іменем [Action]Model (BasicsModel)<br />
+        <code>
+            public class BasicsModel<br />
+            {<br />
+            &nbsp; &nbsp; public DateTime Moment { get; set; }<br />
+            }<br />
+        </code>
+    </li>
+    <li>
+        У контроллері, у методі Basics створюємо об'єкт цієї моделі
+        та передаємо його у представлення.<br />
+        <code>
+            Models.Home.BasicsModel model = new()<br />
+            {<br />
+            &nbsp; &nbsp; Moment = DateTime.Now<br />
+            };<br />
+            return View(model);<br />
+        </code>
+    </li>
+    <li>
+        У представленні заявляємо модель інструкцією 
+        <code>&commat;model ASP121.Models.Home.BasicsModel</code>
+        на початку файлу. Далі по файлу-представленню зверення до моделі
+        здійснюється за ключовим словом <code>Model</code>
+    </li>
+</ol>
+<h4>Результат: @Model.Moment</h4>
