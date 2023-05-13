@@ -1,7 +1,17 @@
+using ASP121.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Add Data Context
+builder.Services.AddDbContext<DataContext>(options => 
+    options.UseMySql(
+        builder.Configuration.GetConnectionString("PlanetDb"),
+        new MySqlServerVersion(new Version(8, 0, 23))
+));
 
 var app = builder.Build();
 

@@ -1,0 +1,99 @@
+﻿@model ASP121.Models.User.UserSignupModel
+@{
+    ViewData["Title"] = "SignUp";
+    bool needSaveValues = false;   // чи треба зберігати попередні значення у полях форми
+}
+
+<div>
+    <h1 class="display-4">Реєстрація нового користувача</h1>
+</div>
+
+@if(ViewData["form"] != null)
+{
+    if (ViewData["form"]?.ToString() == String.Empty) 
+    {
+        <div class="alert alert-success" role="alert">Перевірка пройдена</div>
+    }
+    else
+    {
+        needSaveValues = true;
+        <div class="alert alert-danger" role="alert">@ViewData["form"]</div>
+    }
+}
+
+<div class="row">
+    <div class="col col-8">
+        <form asp-action="SignUp" enctype="multipart/form-data" method="post">
+
+            <label for="user-login" class="form-label">Логін</label>
+            <div class="input-group mb-3">
+                <span class="input-group-text" 
+                      id="user-login-addon"><i class="bi-person" style="font-size:1.1rem"></i></span>
+                <input type="text" class="form-control" 
+                       id="user-login" name="user-login"
+                       placeholder="Виберіть логін"
+                       value="@(needSaveValues ? Model.Login : "")"
+                       aria-describedby="user-login-addon">
+            </div>
+
+            <label for="user-password" class="form-label">Пароль</label>
+            <div class="input-group mb-3">
+                <span class="input-group-text"
+                      id="user-password-addon"><i class="bi-lock" style="font-size:1.1rem"></i></span>
+                <input type="password" class="form-control"
+                       id="user-password" name="user-password"
+                       placeholder="Виберіть пароль"
+                       aria-describedby="user-password-addon">
+            </div>
+
+            <label for="user-repeat" class="form-label">Підтвердіть пароль</label>
+            <div class="input-group mb-3">
+                <span class="input-group-text"
+                      id="user-repeat-addon"><i class="bi-unlock" style="font-size:1.1rem"></i></span>
+                <input type="password" class="form-control"
+                       id="user-repeat" name="user-repeat"
+                       placeholder="Повторіть пароль"
+                       aria-describedby="user-repeat-addon">
+            </div>
+            
+            <label for="user-name" class="form-label">Реальне ім'я (не обов'язково)
+        </label>
+            <div class="input-group mb-3">
+                <span class="input-group-text"
+                      id="user-name-addon"><i class="bi-person" style="font-size:1.1rem"></i></span>
+                <input type="text" class="form-control"
+                       id="user-name" name="user-name"
+                       placeholder="Ім'я використовується для листування з вами"
+                       value="@(needSaveValues ? Model.RealName : "")"
+                       aria-describedby="user-name-addon">
+            </div>
+
+            <label for="user-email" class="form-label">Email</label>
+            <div class="input-group mb-0">
+                <span class="input-group-text" id="user-email-addon"><i class="bi-envelope-at" style="font-size:1.1rem"></i></span>
+                <input type="email" class="form-control" 
+                       id="user-email" name="user-email"
+                       placeholder="Ваша електронна пошта"
+                       value="@(needSaveValues ? Model.Email : "")"
+                       aria-describedby="user-email-addon">
+            </div>
+            <div id="emailHelp" class="form-text mb-3">Без вашої згоди ці відомості поширені не будуть.</div>
+
+            <label for="user-avatar" class="form-label">Аватарка</label>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="user-avatar-addon"><i class="bi-person-circle" style="font-size:1.1rem"></i></span>
+                <input type="file" class="form-control" 
+                       id="user-avatar" name="user-avatar"
+                       aria-describedby="user-avatar-addon" style="font-size:1.1rem">
+            </div>
+
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1"
+                       name="user-confirm" value="true">
+                <label class="form-check-label" for="exampleCheck1">Згоден із правилами сайту</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Зареєструватись</button>
+        </form>
+    </div>
+</div>
+
