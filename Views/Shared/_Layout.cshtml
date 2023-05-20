@@ -28,8 +28,17 @@
                         </li>
                     </ul>
                 </div>
+                <!-- Button trigger modal -->
+                <i class="bi-person-lock text-dark mx-3"
+                   data-bs-toggle="modal" 
+                   data-bs-target="#signinModal"
+                   style="font-size:1.7rem;"
+                   role="button"
+                   title="Вхід до системи"
+                ></i>
+
                 <a asp-controller="User" asp-action="SignUp"
-                   title="Реєстрація"><i class=" bi-person-fill-add" style="font-size:2rem;"></i></a>
+                   title="Реєстрація"><i class="bi-person-add text-dark mx-3" style="font-size:1.7rem;"></i></a>
             </div>
         </nav>
     </header>
@@ -44,6 +53,41 @@
             &copy; 2023 - ASP121 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+
+    <!-- Modal -->
+    <div class="modal fade" id="signinModal" tabindex="-1" aria-labelledby="signinModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="signinModalLabel">Вхід до системи</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text py-0 px-2"
+                              id="signin-login-addon"><i class="bi-person fs-bi"></i></span>
+                        <input type="text" class="form-control"
+                               id="signin-login" name="signin-login"
+                               placeholder="Введіть логін"
+                               aria-describedby="signin-login-addon">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text py-0 px-2"
+                              id="signin-password-addon"><i class="bi-lock fs-bi"></i></span>
+                        <input type="password" class="form-control"
+                               id="signin-password" name="signin-password"
+                               placeholder="Введіть пароль"
+                               aria-describedby="signin-password-addon">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрити</button>
+                    <button type="button" class="btn btn-primary" id="signin-button">Вхід</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

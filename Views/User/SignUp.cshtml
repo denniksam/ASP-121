@@ -27,8 +27,8 @@
 
             <label for="user-login" class="form-label">Логін</label>
             <div class="input-group mb-3">
-                <span class="input-group-text" 
-                      id="user-login-addon"><i class="bi-person" style="font-size:1.1rem"></i></span>
+                <span class="input-group-text py-0 px-2"
+                      id="user-login-addon"><i class="bi-person fs-bi"></i></span>
                 <input type="text" class="form-control" 
                        id="user-login" name="user-login"
                        placeholder="Виберіть логін"
@@ -38,8 +38,8 @@
 
             <label for="user-password" class="form-label">Пароль</label>
             <div class="input-group mb-3">
-                <span class="input-group-text"
-                      id="user-password-addon"><i class="bi-lock" style="font-size:1.1rem"></i></span>
+                <span class="input-group-text py-0 px-2"
+                      id="user-password-addon"><i class="bi-lock fs-bi"></i></span>
                 <input type="password" class="form-control"
                        id="user-password" name="user-password"
                        placeholder="Виберіть пароль"
@@ -48,8 +48,8 @@
 
             <label for="user-repeat" class="form-label">Підтвердіть пароль</label>
             <div class="input-group mb-3">
-                <span class="input-group-text"
-                      id="user-repeat-addon"><i class="bi-unlock" style="font-size:1.1rem"></i></span>
+                <span class="input-group-text py-0 px-2"
+                      id="user-repeat-addon"><i class="bi-unlock fs-bi"></i></span>
                 <input type="password" class="form-control"
                        id="user-repeat" name="user-repeat"
                        placeholder="Повторіть пароль"
@@ -59,8 +59,8 @@
             <label for="user-name" class="form-label">Реальне ім'я (не обов'язково)
         </label>
             <div class="input-group mb-3">
-                <span class="input-group-text"
-                      id="user-name-addon"><i class="bi-person" style="font-size:1.1rem"></i></span>
+                <span class="input-group-text py-0 px-2"
+                      id="user-name-addon"><i class="bi-person fs-bi"></i></span>
                 <input type="text" class="form-control"
                        id="user-name" name="user-name"
                        placeholder="Ім'я використовується для листування з вами"
@@ -70,7 +70,8 @@
 
             <label for="user-email" class="form-label">Email</label>
             <div class="input-group mb-0">
-                <span class="input-group-text" id="user-email-addon"><i class="bi-envelope-at" style="font-size:1.1rem"></i></span>
+                <span class="input-group-text py-0 px-2"
+                      id="user-email-addon"><i class="bi-envelope-at fs-bi"></i></span>
                 <input type="email" class="form-control" 
                        id="user-email" name="user-email"
                        placeholder="Ваша електронна пошта"
@@ -81,17 +82,25 @@
 
             <label for="user-avatar" class="form-label">Аватарка</label>
             <div class="input-group mb-3">
-                <span class="input-group-text" id="user-avatar-addon"><i class="bi-person-circle" style="font-size:1.1rem"></i></span>
-                <input type="file" class="form-control" 
+                <span class="input-group-text py-0 px-2"
+                      id="user-avatar-addon"><i class="bi-person-circle fs-bi"></i></span>
+                <input type="file" class="form-control custom-file-input"
                        id="user-avatar" name="user-avatar"
-                       aria-describedby="user-avatar-addon" style="font-size:1.1rem">
+                       aria-describedby="user-avatar-addon">
             </div>
 
-            <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1"
-                       name="user-confirm" value="true">
-                <label class="form-check-label" for="exampleCheck1">Згоден із правилами сайту</label>
+            <label for="user-confirm" class="form-label">Правила сайту</label>
+            <div class="input-group mb-3 align-items-center">
+                <span class="input-group-text py-0 px-2"
+                      id="user-confirm-addon"><i class="bi-file-earmark-text fs-bi"></i></span>
+                <div class="form-check mx-3">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1"
+                           name="user-confirm" value="true"
+                           aria-describedby="user-check-addon">
+                    <label class="form-check-label" for="exampleCheck1">Згоден дотримуватись правил сайту</label>
+                </div>
             </div>
+            
             <button type="submit" class="btn btn-primary">Зареєструватись</button>
         </form>
     </div>

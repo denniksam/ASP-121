@@ -16,3 +16,15 @@ html {
 body {
   margin-bottom: 60px;
 }
+/* custom file input https://stackoverflow.com/a/70524347/5569247 */
+.custom-file-input::-webkit-file-upload-button {
+    display: none;
+}
+
+.custom-file-input::file-selector-button {
+    display: none;
+}
+/* font size for registration icons */
+.fs-bi {
+    font-size: 1.5rem;
+}

@@ -1,10 +1,13 @@
 using ASP121.Data;
+using ASP121.Services.Hash;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddSingleton<IHashService, Md5HashService>();
 
 // Add Data Context
 builder.Services.AddDbContext<DataContext>(options => 

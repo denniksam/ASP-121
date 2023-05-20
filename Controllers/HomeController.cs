@@ -1,4 +1,5 @@
 ﻿using ASP121.Models;
+using ASP121.Services.Hash;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -7,10 +8,12 @@ namespace ASP121.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IHashService _hashService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IHashService hashService)
         {
             _logger = logger;
+            _hashService = hashService;
         }
 
         public IActionResult Index()
@@ -41,7 +44,15 @@ namespace ASP121.Controllers
             };
             return View(model);
         }
-        
+
+        public ViewResult Services()
+        {
+            ViewData["hash"] = _hashService.HashString("123");
+            ViewData["obj"] = _hashService.GetHashCode();
+            ViewData["ctr"] = this.GetHashCode();
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
