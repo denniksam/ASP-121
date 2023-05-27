@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using System.Security.Claims;
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -28,17 +29,39 @@
                         </li>
                     </ul>
                 </div>
-                <!-- Button trigger modal -->
-                <i class="bi-person-lock text-dark mx-3"
-                   data-bs-toggle="modal" 
-                   data-bs-target="#signinModal"
-                   style="font-size:1.7rem;"
-                   role="button"
-                   title="Вхід до системи"
-                ></i>
+                @if (Context.User.Identity?.IsAuthenticated == true)
+                {
+                    String? avatar =
+                        Context.User.Claims
+                            .FirstOrDefault(c => c.Type == ClaimTypes.UserData)
+                            ?.Value;
 
-                <a asp-controller="User" asp-action="SignUp"
-                   title="Реєстрація"><i class="bi-person-add text-dark mx-3" style="font-size:1.7rem;"></i></a>
+                    <img src="/uploads/@avatar" alt="Ava" class="rounded-circle" style="max-width: 40px" />
+                    @*
+                        Д.З. Додати посилання/кнопку для вихода (Sign Out)
+                        При натисненні скидається автентифікація та відбувається перехід
+                        на домашню сторінку.
+                        У контроллері утворюємо метод SignOut і саме на нього робимо посилання
+                        Цей метод має прибрати з сесії дані про користувача (id), але
+                        небажана повністю стирати сесію - тільки дані автентифікації.
+                        Метод має повертати результат-Redirect на головну сторінку, це
+                        змусить браузер перейти на неї
+                    *@
+                }
+                else
+                {
+                    <!-- Button trigger modal -->
+                    <i class="bi-person-lock text-dark mx-3"
+                       data-bs-toggle="modal"
+                       data-bs-target="#signinModal"
+                       style="font-size:1.7rem;"
+                       role="button"
+                       title="Вхід до системи"></i>
+
+                    <a asp-controller="User" asp-action="SignUp"
+                       title="Реєстрація"><i class="bi-person-add text-dark mx-3" 
+                       style="font-size:1.7rem;"></i></a>
+                }                
             </div>
         </nav>
     </header>

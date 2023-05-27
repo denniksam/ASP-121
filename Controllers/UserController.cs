@@ -29,13 +29,18 @@ namespace ASP121.Controllers
         [HttpPost]
         public JsonResult LogIn([FromForm] String login, [FromForm] String password)
         {
-            /* Використовуючи _dataContext виявити чи є користувач із 
-             * переданими login та password (пароль зберігається як геш)
-             * В залежності від результату перевірки надіслати відповідь
-             * Json(new { status = "OK" })     або
-             * Json(new { status = "NO" })
-             */
-            return Json(new { login, password });
+            var user = _dataContext.Users121.FirstOrDefault(u => u.Login == login);
+            if(user != null)
+            {
+                if(user.PasswordHash == _hashService.HashString(password))
+                {
+                    // Автентифікацію пройдено
+                    // зберігаємо у сесії id користувача
+                    HttpContext.Session.SetString("AuthUserId", user.Id.ToString());
+                    return Json(new { status = "OK" });
+                }
+            }
+            return Json(new { status = "NO" });
         }
 
         // Перевіряє валідність даних у моделі, прийнятої з форми
