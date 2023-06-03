@@ -36,7 +36,7 @@ namespace ASP121.Middleware
             {
                 // є дані збереженої автентифікації
                 // шукаємо користувача за збереженим id
-                var user = dataContext.Users121.Find(Guid.Parse(
+                var user = dataContext.Users.Find(Guid.Parse(
                     context.Session.GetString("AuthUserId")!));
                 if(user != null)
                 {

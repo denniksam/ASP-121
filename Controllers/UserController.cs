@@ -29,7 +29,7 @@ namespace ASP121.Controllers
         [HttpPost]
         public JsonResult LogIn([FromForm] String login, [FromForm] String password)
         {
-            var user = _dataContext.Users121.FirstOrDefault(u => u.Login == login);
+            var user = _dataContext.Users.FirstOrDefault(u => u.Login == login);
             if(user != null)
             {
                 if(user.PasswordHash == _hashService.HashString(password))
@@ -73,7 +73,7 @@ namespace ASP121.Controllers
             }
 
             // додаємо користувача до БД
-            _dataContext.Users121.Add(new Data.Entity.User
+            _dataContext.Users.Add(new Data.Entity.User
             {
                 Id = Guid.NewGuid(),
                 Login = model.Login,

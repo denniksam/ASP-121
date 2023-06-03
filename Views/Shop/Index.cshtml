@@ -1,0 +1,47 @@
+﻿@model ASP121.Models.Shop.ShopIndexViewModel
+@{
+    ViewData["Title"] = "Shop Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Крамниця</h1>
+</div>
+
+@foreach (var product in Model.Products)
+{
+    <p>@product.Title</p>
+}
+
+<div class="row">
+    <div class="col col-6">
+        <b>@Model.AddMessage</b>
+        <form asp-action="AddProduct" method="post" enctype="multipart/form-data">
+            <select name="productGroup" class="form-select" aria-label="Select">
+                <option selected>Виберіть товарну групу</option>
+                @foreach (var productGroup in Model.ProductGroups)
+                {
+                    <option value="@productGroup.Id">@productGroup.Title</option>
+                }
+            </select>
+            <div class="my-3">
+                <label for="productName" class="form-label">Назва</label>
+                <input type="text" class="form-control" id="productName" name="productName">
+            </div>
+            <div class="mb-3">
+                <label for="productDescription" class="form-label">Опис</label>
+                <textarea class="form-control" id="productDescription" name="productDescription" rows="3"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="productPrice" class="form-label">Ціна</label>
+                <input type="number" step="0.01" class="form-control" id="productPrice" name="productPrice">
+            </div>
+            <div class="mb-3">
+                <label for="productImage" class="form-label">Зображення</label>
+                <input type="file" class="form-control"
+                       id="productImage" name="productImage"
+                       aria-describedby="productImage">
+            </div>
+            <button class="btn btn-secondary" type="submit">Додати</button>
+        </form>
+    </div>
+</div>
