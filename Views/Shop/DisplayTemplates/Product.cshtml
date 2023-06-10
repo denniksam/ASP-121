@@ -1,0 +1,30 @@
+﻿@using System.Security.Claims;
+@*
+    Template - часткове представлення, що є частиною іншого представлення
+    Містить розмітку для відображення товару (Product)
+*@
+@model ASP121.Data.Entity.Product
+@{
+    String? userId = Context.User.Claims
+                .FirstOrDefault(c => c.Type == ClaimTypes.Sid)?.Value;
+}
+<div class="col">
+    <div class="card h-100">
+        <img src="/uploads/@(Model.ImageUrl)" class="card-img-top" alt="Image">
+        <div class="card-body">
+            <h5 class="card-title">@Model.Title</h5>
+            <p><strong>@Model.Price грн.</strong></p>
+            <p class="card-text">@Model.Description</p>
+        </div>
+        <div class="card-footer d-flex align-items-center"
+             data-user-id="@userId" data-product-id="@Model.Id">
+
+            <i class="bi bi-hand-thumbs-up" data-rate-value="1"></i> 123
+            <span class="mx-4">
+                <i class="bi bi-hand-thumbs-down" data-rate-value="-1"></i> 5
+            </span>
+            <i class="bi bi-eye"></i> 512
+            <button class="btn btn-outline-success ms-auto"><i class="bi bi-cart f-large"></i></button>
+        </div>
+    </div>
+</div>

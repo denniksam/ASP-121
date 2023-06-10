@@ -44,7 +44,10 @@ namespace ASP121.Controllers
             };
             return View(model);
         }
-
+        public ViewResult API()
+        {
+            return View();
+        }
         public ViewResult Services()
         {
             ViewData["hash"] = _hashService.HashString("123");
