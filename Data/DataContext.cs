@@ -21,6 +21,12 @@ namespace ASP121.Data
             modelBuilder  // вказуємо композитний ключ для таблиці Rates
                 .Entity<Entity.Rate>()
                 .HasKey(nameof(Entity.Rate.ProductId), nameof(Entity.Rate.UserId));
+
+            modelBuilder.Entity<Entity.Product>()
+                .HasMany(p => p.Rates)     // обов'язкова частина - !
+                .WithOne(r => r.Product)   // навігаційні властивості
+                .HasPrincipalKey(p => p.Id)        // необов'язково - тільки
+                .HasForeignKey(r => r.ProductId);  // якщо нестандартні назви полів
         }
     }
 }

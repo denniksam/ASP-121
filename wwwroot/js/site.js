@@ -79,5 +79,15 @@ function rateClick(e) {  // like / dislike
         .then(r => r.json())
         .then(j => {
             console.log(j);
+            if (j.status == true) {
+                const parentDiv = e.target.closest("[data-product-id]");
+                /* const element = rate > 0
+                    ? parentDiv.querySelector(".rate-positive")
+                    : parentDiv.querySelector(".rate-negative");
+                element.innerText = Number(element.innerText) + 1; */
+                parentDiv.querySelector(".rate-positive").innerText = j.positive;
+                parentDiv.querySelector(".rate-negative").innerText = j.negative;
+                parentDiv.querySelector(".rate-total").innerText = +j.positive + j.negative;
+            }
         });
 }

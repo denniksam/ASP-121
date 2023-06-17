@@ -19,11 +19,14 @@
         <div class="card-footer d-flex align-items-center"
              data-user-id="@userId" data-product-id="@Model.Id">
 
-            <i class="bi bi-hand-thumbs-up" data-rate-value="1"></i> 123
+            <i class="bi bi-hand-thumbs-up" data-rate-value="1"></i>
+            <span class="rate-positive">@Model.Rates.Count(r => r.Rating > 0)</span>
             <span class="mx-4">
-                <i class="bi bi-hand-thumbs-down" data-rate-value="-1"></i> 5
+                <i class="bi bi-hand-thumbs-down" data-rate-value="-1"></i> 
+                <span class="rate-negative">@Model.Rates.Count(r => r.Rating < 0)</span>
             </span>
-            <i class="bi bi-eye"></i> 512
+            <i class="bi bi-eye"></i>
+            <span class="rate-total">@Model.Rates.Count()</span>
             <button class="btn btn-outline-success ms-auto"><i class="bi bi-cart f-large"></i></button>
         </div>
     </div>

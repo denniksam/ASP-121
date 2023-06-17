@@ -2,6 +2,7 @@
 using ASP121.Models.Rate;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ASP121.Controllers
 {
@@ -38,13 +39,23 @@ namespace ASP121.Controllers
                     Moment = DateTime.Now,
                 });
                 _dataContext.SaveChanges();
-                return new { Status = true, Message = "OK" };
+                // оновлюємо дані про рейтинг даного товару
+                var product = _dataContext.Products
+                    .Include(p => p.Rates)
+                    .Where(p => p.Id == model.ProductId)
+                    .First();
+                // включаємо оновлені дані у відповідь (для відображення)
+                return new { 
+                    Status = true, 
+                    Message = "OK",
+                    Positive = product.Rates.Count(r => r.Rating > 0),
+                    Negative = product.Rates.Count(r => r.Rating < 0),
+                };
             }
-            // return model;            
         }
     }
 }
-/* Д.З. Реалізувати відображення рейтингів товарів
+/* Реалізувати відображення рейтингів товарів
  * - створити навігаційну властивість у Entity.Product
  * - конфігурувати її у контексті (OnModelCreating)
  *    !! якщо будете робити міграцію, то видаляйте/коментуйте
@@ -53,4 +64,7 @@ namespace ASP121.Controllers
  * - у представленні відобразити реальні числа
  * ** при новій оцінці оновлювати лічильник (рейтинг) якщо від
  *    бекенду надійде позитивний статус (без оновлення сторінки)
+ *    
+ * = для роботи з Azure буде потрібна платіжна картка, створити
+ *   окрему картку (Інтернет-), перевести на неї близько $1
  */

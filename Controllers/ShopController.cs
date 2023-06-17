@@ -3,6 +3,7 @@ using ASP121.Models.Shop;
 using ASP121.Models.User;
 using ASP121.Services.Hash;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Globalization;
 
 namespace ASP121.Controllers
@@ -23,6 +24,7 @@ namespace ASP121.Controllers
                 ProductGroups = _dataContext.ProductGroups
                     .Where(g => g.DeleteDt == null).ToList(),
                 Products = _dataContext.Products
+                    .Include(p => p.Rates)  // заповнює навігаційну вл. (включає до запиту SQL)
                     .Where(p => p.DeleteDt == null).ToList(),
             };
             if (HttpContext.Session.Keys.Contains("AddMessage"))
