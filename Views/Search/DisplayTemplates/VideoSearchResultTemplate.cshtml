@@ -1,0 +1,56 @@
+﻿@model ASP121.Models.Orm.AzureSearchVideo.Value
+
+<div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <iframe width="160" height="90"
+                    src="@(Model.contentUrl.Replace("watch?v=", "embed/"))">
+            </iframe>
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*
+    {
+      "webSearchUrl": "https://www.bing.com/videos/search?q=step&view=detail&mid=0DF55940EB2A84B1109D0DF55940EB2A84B1109D",
+      "name": "STEP CHOREOGRAPHY ADVANCED",
+      "description": "FULL 40-MINUTE ADVANCED STEP WORKOUT BREAKDOWN",
+      "thumbnailUrl": "https://tse2.mm.bing.net/th?id=OVP.NOiY_sG2Zquw9wnEuE3yugEsDh&pid=Api",
+      "datePublished": "2021-05-18T04:30:10.0000000",
+      "publisher": [
+        {
+          "name": "YouTube"
+        }
+      ],
+      "creator": {
+        "name": "Mirna's Aerobic Studio"
+      },
+      "isAccessibleForFree": true,
+      "isFamilyFriendly": true,
+      "contentUrl": "https://www.youtube.com/watch?v=_Q6sLICTixM",
+      "hostPageUrl": "https://www.youtube.com/watch?v=_Q6sLICTixM",
+      "encodingFormat": "",
+      "hostPageDisplayUrl": "https://www.youtube.com/watch?v=_Q6sLICTixM",
+      "width": 1920,
+      "height": 1080,
+      "duration": "PT43M25S",
+      "motionThumbnailUrl": "https://tse4.mm.bing.net/th?id=OM.nRCxhCrrQFn1DQ_1686999515&pid=Api",
+      "embedHtml": "<iframe width=\"1280\" height=\"720\" src=\"https://www.youtube.com/embed/_Q6sLICTixM?autoplay=1\" frameborder=\"0\" allowfullscreen></iframe>",
+      "allowHttpsEmbed": true,
+      "viewCount": 49636,
+      "thumbnail": {
+        "width": 300,
+        "height": 225
+      },
+      "videoId": "0DF55940EB2A84B1109D0DF55940EB2A84B1109D",
+      "allowMobileEmbed": true,
+      "isSuperfresh": false
+    },
+*@

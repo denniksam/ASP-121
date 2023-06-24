@@ -16,6 +16,11 @@ namespace ASP121.Controllers
             _hashService = hashService;
         }
 
+        public ViewResult Azure()
+        {
+            return View();
+        }
+
         public IActionResult Index()
         {
             return View();

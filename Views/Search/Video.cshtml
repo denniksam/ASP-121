@@ -1,0 +1,57 @@
+﻿@model ASP121.Models.Search.SearchVideoModel
+@{
+    ViewData["Title"] = "Video";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Когнітивні сервіси. Пошук відео.</h1>
+</div>
+
+<div class="row">
+    <div class="col col-7 offset-2">
+        <form>
+            <label for="search" class="form-label">Що шукаємо?</label>
+            <div class="input-group mb-3">
+                <span class="input-group-text py-0 px-2"
+                      id="search-addon"><i class="bi bi-search"></i></span>
+                <input type="text" class="form-control"
+                       id="search" name="search"
+                       placeholder="Введіть пошуковий запит"
+                       aria-describedby="search-addon">
+                <button class="btn btn-secondary" type="submit">Пошук</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+        <a class="nav-link"asp-controller="Search" asp-action="Index"
+           asp-route-search="@Model.SearchVideoResponse?.queryContext.originalQuery">Веб-сторінки</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#">Зображення</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="#">Відео</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#">Новини</a>
+    </li>
+</ul>
+
+
+@if (Model.SearchVideoResponse != null)
+{
+    <p>
+        За запитом
+        <b>@Model.SearchVideoResponse.queryContext.originalQuery</b>
+        знайдено
+        <b>@Model.SearchVideoResponse.totalEstimatedMatches</b>
+        відео:
+    </p>
+    foreach (var result in Model.SearchVideoResponse.value)
+    {
+        @Html.DisplayFor(m => result, "VideoSearchResultTemplate")
+    }
+}
