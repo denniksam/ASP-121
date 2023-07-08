@@ -1,0 +1,35 @@
+﻿@using ASP121.Models.Cosmos;
+@{
+    ViewData["Title"] = "Azure SQL";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Бази даних Azure. CosmosDB</h1>
+</div>
+
+@if (ViewData["feedbacks"] is List<FeedbackFormModel> list)
+{
+    foreach (FeedbackFormModel feedback in list)
+    {
+        <p>
+            @feedback.moment:
+            @feedback.Name
+            @feedback.Message
+        </p>
+    }
+}
+
+<form method="post">
+    <h3>Залишити відгук</h3>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Ваше ім'я</label>
+        <input type="text" class="form-control" id="exampleFormControlInput1" 
+               placeholder="nik" name="Name">
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Ваше повідомлення</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" 
+                  rows="3" name="Message"></textarea>
+    </div>
+    <button type="submit" class="btn btn-secondary">Надіслати</button>
+</form>

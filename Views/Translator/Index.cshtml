@@ -1,0 +1,42 @@
+﻿@model ASP121.Models.Translator.TranslatorViewModel
+@{
+    ViewData["Title"] = "Translator";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Когнітивні сервіси. Перекладач.</h1>
+</div>
+
+@if(Model.FormModel != null && Model.ErrorMessage != null)
+{
+    <p class="alert alert-danger">
+        @Model.ErrorMessage
+    </p>
+}
+
+<form>
+<div class="row">
+    <div class="col col-3 text-center">
+        <select class="form-select" name="LangFrom">
+            <option value="uk" selected>Українська</option>
+            <option value="en">English</option>
+            <option value="es">Spanish</option>
+        </select>
+        <textarea class="form-control" rows="4" name="OriginalText">@(Model.FormModel?.OriginalText)</textarea>
+    </div>
+    <div class="col col-1 text-center">
+        <button name="TranslateButton" value="TranslateButton"><i class="bi bi-arrow-right-square"></i></button>
+        <br/>
+        <br/>
+        <button name="InverseButton" value="InverseButton"><i class="bi bi-arrow-left-right"></i></button>
+    </div>
+    <div class="col col-3 text-center">
+        <select class="form-select" name="LangTo">
+            <option value="uk">Українська</option>
+            <option value="en" selected>English</option>
+            <option value="es">Spanish</option>
+        </select>
+        <textarea class="form-control" rows="4" disabled name="TranslatedText">@(Model.FormModel?.TranslatedText)</textarea>
+    </div>
+</div>
+</form>

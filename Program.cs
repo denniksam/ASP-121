@@ -1,5 +1,6 @@
 using ASP121.Data;
 using ASP121.Middleware;
+using ASP121.Services.Cosmos;
 using ASP121.Services.Hash;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;
@@ -11,6 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddSingleton<IHashService, Md5HashService>();
+builder.Services.AddSingleton<ICosmosDbService, TodoCosmosDbService>();
 
 // Add Data Context
 builder.Services.AddDbContext<DataContext>(options => 
